@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/acciones/{actionId} {
+      function ownsUserData() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function validAction() {
+        return request.resource.data.keys().hasAll([
+            'uid', 'accion', 'categoria', 'impacto', 'descripcion', 'createdAt'
+          ])
+          && request.resource.data.keys().hasOnly([
+            'uid', 'accion', 'categoria', 'impacto', 'descripcion', 'createdAt'
+          ])
+          && request.resource.data.uid == userId
+          && request.resource.data.accion is string
+          && request.resource.data.accion.size() > 0
+          && request.resource.data.accion.size() <= 100
+          && request.resource.data.categoria is string
+          && request.resource.data.categoria.size() > 0
+          && request.resource.data.categoria.size() <= 40
+          && request.resource.data.impacto is string
+          && request.resource.data.impacto.size() > 0
+          && request.resource.data.impacto.size() <= 100
+          && request.resource.data.descripcion is string
+          && request.resource.data.descripcion.size() <= 500
+          && request.resource.data.createdAt == request.time;
+      }
+
+      allow get, list: if ownsUserData();
+      allow create: if ownsUserData() && validAction();
+      allow delete: if ownsUserData() && resource.data.uid == userId;
+      allow update: if false;
+    }
+  }
+}

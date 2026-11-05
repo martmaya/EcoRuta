@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <EditText android:id="@+id/inputAccion" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/hint_accion" android:inputType="textCapSentences" />
+    <EditText android:id="@+id/inputCategoria" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:hint="@string/hint_categoria" android:inputType="textCapSentences" />
+    <EditText android:id="@+id/inputImpacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:hint="@string/hint_impacto" android:inputType="textCapSentences" />
+    <EditText android:id="@+id/inputDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:gravity="top" android:hint="@string/hint_descripcion" android:inputType="textCapSentences|textMultiLine" android:minLines="2" />
+</LinearLayout>
