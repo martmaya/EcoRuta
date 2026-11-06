@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="eco_navy">#163B59</color>
+    <color name="eco_green">#48A6D6</color>
+    <color name="eco_green_dark">#237FAF</color>
+    <color name="eco_blue_panel">#287FA9</color>
+    <color name="eco_canvas">#F0F7FB</color>
+    <color name="eco_muted">#5E7282</color>
+    <color name="eco_auth_blue">#287FA9</color>
+    <color name="eco_auth_sky">#D8EDF8</color>
+    <color name="eco_auth_sky_light">#F2F9FD</color>
+    <color name="eco_auth_outline">#B9CAD5</color>
 </resources>

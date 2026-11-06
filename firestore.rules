@@ -1,37 +1,58 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{userId}/acciones/{actionId} {
-      function ownsUserData() {
-        return request.auth != null && request.auth.uid == userId;
-      }
+    function userOwnsPath(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
 
-      function validAction() {
-        return request.resource.data.keys().hasAll([
-            'uid', 'accion', 'categoria', 'impacto', 'descripcion', 'createdAt'
-          ])
-          && request.resource.data.keys().hasOnly([
-            'uid', 'accion', 'categoria', 'impacto', 'descripcion', 'createdAt'
-          ])
+    function validCategory(userId) {
+      return request.resource.data.keys().hasAll(['uid', 'nombre', 'descripcion', 'icono', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['uid', 'nombre', 'descripcion', 'icono', 'createdAt'])
           && request.resource.data.uid == userId
-          && request.resource.data.accion is string
-          && request.resource.data.accion.size() > 0
-          && request.resource.data.accion.size() <= 100
-          && request.resource.data.categoria is string
-          && request.resource.data.categoria.size() > 0
-          && request.resource.data.categoria.size() <= 40
-          && request.resource.data.impacto is string
-          && request.resource.data.impacto.size() > 0
-          && request.resource.data.impacto.size() <= 100
+          && request.resource.data.nombre is string
+          && request.resource.data.nombre.size() > 0
+          && request.resource.data.nombre.size() <= 40
           && request.resource.data.descripcion is string
-          && request.resource.data.descripcion.size() <= 500
-          && request.resource.data.createdAt == request.time;
-      }
+          && request.resource.data.descripcion.size() <= 160
+          && request.resource.data.icono in ['leaf', 'water', 'recycle', 'bike', 'sun', 'tree', 'ordenar', 'reciclar', 'ahorro'];
+    }
 
-      allow get, list: if ownsUserData();
-      allow create: if ownsUserData() && validAction();
-      allow delete: if ownsUserData() && resource.data.uid == userId;
-      allow update: if false;
+    function validAction(userId) {
+      return request.resource.data.keys().hasAll(['uid', 'categoriaId', 'categoriaNombre', 'nombre', 'descripcion', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['uid', 'categoriaId', 'categoriaNombre', 'nombre', 'descripcion', 'createdAt'])
+          && request.resource.data.uid == userId
+          && request.resource.data.categoriaId is string
+          && request.resource.data.categoriaId.size() > 0
+          && request.resource.data.categoriaId.size() <= 100
+          && exists(/databases/$(database)/documents/users/$(userId)/categorias/$(request.resource.data.categoriaId))
+          && request.resource.data.categoriaNombre is string
+          && request.resource.data.categoriaNombre.size() > 0
+          && request.resource.data.categoriaNombre.size() <= 40
+          && request.resource.data.nombre is string
+          && request.resource.data.nombre.size() > 0
+          && request.resource.data.nombre.size() <= 80
+          && request.resource.data.descripcion is string
+          && request.resource.data.descripcion.size() <= 500;
+    }
+
+    match /users/{userId}/categorias/{categoryId} {
+      allow get, list: if userOwnsPath(userId);
+      allow create: if userOwnsPath(userId) && validCategory(userId)
+          && request.resource.data.createdAt == request.time;
+      allow update: if userOwnsPath(userId) && resource.data.uid == userId
+          && validCategory(userId)
+          && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if userOwnsPath(userId) && resource.data.uid == userId;
+    }
+
+    match /users/{userId}/acciones/{actionId} {
+      allow get, list: if userOwnsPath(userId);
+      allow create: if userOwnsPath(userId) && validAction(userId)
+          && request.resource.data.createdAt == request.time;
+      allow delete: if userOwnsPath(userId) && resource.data.uid == userId;
+      allow update: if userOwnsPath(userId) && resource.data.uid == userId
+          && validAction(userId)
+          && request.resource.data.createdAt == resource.data.createdAt;
     }
   }
 }

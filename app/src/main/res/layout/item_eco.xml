@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:background="#F2F8F1"
-    android:orientation="vertical"
-    android:padding="16dp">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
-        <TextView android:id="@+id/txtAccion" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="#245B38" android:textSize="18sp" android:textStyle="bold" />
-        <Button android:id="@+id/btnEliminarAccion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="40dp" android:text="@string/eliminar" android:textSize="12sp" />
+    android:background="@drawable/bg_white_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="13dp">
+    <View android:layout_width="4dp" android:layout_height="match_parent" android:background="@color/eco_green" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="11dp" android:layout_weight="1" android:orientation="vertical">
+        <TextView android:id="@+id/txtAccion" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/eco_navy" android:textSize="15sp" android:textStyle="bold" />
+        <TextView android:id="@+id/txtCategoria" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textColor="@color/eco_green_dark" android:textSize="12sp" />
+        <TextView android:id="@+id/txtDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textColor="@color/eco_muted" android:textSize="13sp" />
+        <TextView android:id="@+id/txtFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textColor="@color/eco_muted" android:textSize="11sp" />
     </LinearLayout>
-    <TextView android:id="@+id/txtCategoria" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textSize="14sp" />
-    <TextView android:id="@+id/txtFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textSize="14sp" />
-    <TextView android:id="@+id/txtImpacto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:textSize="14sp" />
-    <TextView android:id="@+id/txtDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:textSize="14sp" />
+    <TextView android:id="@+id/btnEliminarAccion" android:layout_width="36dp" android:layout_height="40dp" android:clickable="true" android:focusable="true" android:gravity="center" android:text="@string/simbolo_cerrar" android:textColor="@color/eco_muted" android:textSize="22sp" />
 </LinearLayout>

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "313181623229",
+    "firebase_url": "https://pruebas-49488-default-rtdb.firebaseio.com",
+    "project_id": "pruebas-49488",
+    "storage_bucket": "pruebas-49488.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313181623229:android:61e7b42b12e117f55478d4",
+        "android_client_info": {
+          "package_name": "com.example.appnueve"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO0j2Ay7-tS2Xphrh60NWjZJ22wJSyXaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313181623229:android:59a564f9f7c40eac5478d4",
+        "android_client_info": {
+          "package_name": "com.example.ecoruta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO0j2Ay7-tS2Xphrh60NWjZJ22wJSyXaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
