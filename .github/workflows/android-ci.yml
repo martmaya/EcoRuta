@@ -16,6 +16,9 @@ jobs:
       - name: Descargar el código
         uses: actions/checkout@v6
 
+      - name: Dar permiso a Gradle
+        run: chmod +x gradlew
+
       - name: Configurar Java 17
         uses: actions/setup-java@v4
         with:
@@ -26,10 +29,10 @@ jobs:
         uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3
 
       - name: Ejecutar pruebas unitarias
-        run: gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest
 
       - name: Analizar con Android Lint
-        run: gradlew lintDebug
+        run: ./gradlew lintDebug
 
       - name: Compilar la aplicación
-        run: gradlew assembleDebug
+        run: ./gradlew assembleDebug
