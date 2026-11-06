@@ -1042,3 +1042,5 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(value * getResources().getDisplayMetrics().density);
     }
 }
+
+// Verificacion de integracion continua
